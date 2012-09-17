@@ -1,0 +1,3 @@
+class @ResponsiveImage
+  mobile: ->
+    true
