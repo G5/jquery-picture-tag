@@ -2,7 +2,11 @@
 (function() {
 
   describe("ResponsiveImage", function() {
+<<<<<<< HEAD
     return it("responsds to mobile", function() {
+=======
+    return it("responds to mobile", function() {
+>>>>>>> includes js correctly
       var image;
       image = new ResponsiveImage();
       return expect(image.mobile()).toEqual(true);
