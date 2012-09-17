@@ -26,20 +26,24 @@
     ResponsiveImage.prototype._doSomething = function() {
       var _this = this;
       this.highestMatch = 0;
-      this.mediaSource = this.$el.children("source:not([media])").attr("srcset").match(/^\S+/)[0];
+      this.mediaSource = this._getSrc(this.$el.children("source:not([media])"));
       this.$el.children("source").each(function(i, el) {
         _this.mediaQuery = $(el).attr("media");
         if (matchMedia(_this.mediaQuery).matches) {
           _this.screenWidth = _this.mediaQuery.match(/\d+/);
           if (_this.screenWidth >= _this.highestMatch) {
             _this.highestMatch = _this.screenWidth;
-            _this.mediaSource = $(el).attr("srcset").match(/^\S+/)[0];
+            _this.mediaSource = _this._getSrc($(el));
             return console.log(_this.mediaSource);
           }
         }
       });
       console.log(this.mediaSource);
       return this.$el.children("img").attr("src", this.mediaSource);
+    };
+
+    ResponsiveImage.prototype._getSrc = function($el) {
+      return $el.attr("srcset").match(/^\S+/)[0];
     };
 
     return ResponsiveImage;
