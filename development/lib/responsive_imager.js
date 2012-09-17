@@ -6,12 +6,32 @@
 
   this.ResponsiveImage = (function() {
 
-    function ResponsiveImage(name) {
-      this.name = name;
+    function ResponsiveImage($el) {
+      this.$el = $el;
+      this.highestMatch = 0;
+      this.mediaSource = void 0;
+      this.mediaQuery = void 0;
+      this.screenWidth = 0;
     }
 
     ResponsiveImage.prototype.doSomething = function() {
-      return console.log("something");
+      var _this = this;
+      this.highestMatch = 0;
+      this.$el.children("source").each(function(i, el) {
+        _this.mediaQuery = $(el).attr("media");
+        if (matchMedia(_this.mediaQuery).matches) {
+          _this.screenWidth = _this.mediaQuery.match(/\d+/);
+          if (_this.screenWidth >= _this.highestMatch) {
+            _this.highestMatch = _this.screenWidth;
+            _this.mediaSource = $(el).attr("srcset").match(/^\S+/)[0];
+            return console.log(_this.mediaSource);
+          }
+        }
+      });
+      if (this.highestMatch > 0) {
+        this.$el.children("img").attr("src", this.mediaSource);
+        return console.log(this.mediaSource);
+      }
     };
 
     return ResponsiveImage;
@@ -19,9 +39,13 @@
   })();
 
   $.fn.makeResponsive = function() {
-    var ri;
-    ri = new ResponsiveImage();
-    return ri.doSomething();
+    var $pictures;
+    $pictures = this;
+    return $pictures.each(function() {
+      var ri;
+      ri = new ResponsiveImage($(this));
+      return ri.doSomething();
+    });
   };
 
 }).call(this);
