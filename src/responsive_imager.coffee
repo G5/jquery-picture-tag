@@ -1,6 +1,11 @@
+$ = jQuery
+
 class @ResponsiveImage
-  constructor: ($element) ->
-    @$element: $element
-  
-  mobile: ->
-    true
+  constructor: (@name) ->
+
+  doSomething: ->
+    console.log "something"
+
+$.fn.makeResponsive = () ->
+  ri = new ResponsiveImage()
+  ri.doSomething()

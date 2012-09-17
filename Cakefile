@@ -17,7 +17,7 @@ task "build", "Package for distribution", ->
 
 task "build:development", "Watch for changes in src and update development package", ->
   compileSrc(true)
-  compileSpec()
+  # compileSpec()
 
 emptyLib = ->
   execute "rm", ["-r", "lib"]
