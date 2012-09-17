@@ -7,9 +7,10 @@
     <script type="text/javascript" charset="utf-8" src="lib/js/responsive_imager.js"></script>
   </head>
 
-  <img src='images/iphone.jpg'>
-    <source src='images/ipad.jpeg' media="(min-width: 768px)" />
-    <source src='images/laptop.jpeg' media="(min-width: 980)" />
-  </img>
-  
+  <picture>
+    <source media="(min-width: 980px)" srcset="images/large-1.jpg 1x, images/large-2.jpg 2x">
+    <source media="(min-width: 768px)" srcset="images/med-1.jpg 1x, images/med-2.jpg 2x">
+    <source srcset="images/small-1.jpg 1x, images/small-2.jpg 2x"> 
+    <img src="images/small-1.jpg" alt=""> 
+  </picture>  
 </body>
