@@ -2,37 +2,34 @@ $ = jQuery
 
 class @ResponsiveImage
   constructor: (@$el) ->
-    @highestMatch = 0
+    @largestMediaMinWidth = 0
     @newSrc = undefined
-    @mediaQuery = undefined
-    @screenWidth = 0
 
-    @_doSomething()
-    @_initBehavior()
+    @_replacePictureImgSrcWithBestSourceSrcsetSrc()
+    @_onResizeReplacePictureImgSrcWithBestSourceSrcsetSrc()
 
-  _initBehavior: ->
-    $(window).resize @_doSomething
+  _onResizeReplacePictureImgSrcWithBestSourceSrcsetSrc: ->
+    $(window).resize @_replacePictureImgSrcWithBestSourceSrcsetSrc
 
-  _doSomething: =>
-    @highestMatch = 0
-    @smallestSource = @$el.children("source:not([media])")
-    @newSrc = @_getSrcFromSrcset(@smallestSource)
-    # iterate through sources
+  _replacePictureImgSrcWithBestSourceSrcsetSrc: =>
+    @largestMediaMinWidth = 0
+    smallestSource = @$el.children("source:not([media])")
+    @newSrc = @_getSrcFromSrcset(smallestSource)
     @$el.children("source").each (i, el) =>
-      @mediaQuery = $(el).attr("media")
-      @_something(el)
+      @_keepSrcIfBestMediaMatch(el)
     @_setPictureImgSrc(@$el, @newSrc)
 
-  _something: (el) ->
-    # if source media query matches
-    if matchMedia(@mediaQuery).matches
-      @screenWidth = @mediaQuery.match(/\d+/)
-      # see if its the best match
-      if @screenWidth >= @highestMatch
-        @highestMatch = @screenWidth
+  _keepSrcIfBestMediaMatch: (el) ->
+    mediaQuery = $(el).attr("media")
+    if matchMedia(mediaQuery).matches
+      mediaQueryMinWidth = @_getMediaQueryMinWidth(mediaQuery)
+      if mediaQueryMinWidth >= @largestMediaMinWidth
+        @largestMediaMinWidth = mediaQueryMinWidth
         @newSrc = @_getSrcFromSrcset($(el))
-        console.log @newSrc
-  
+
+  _getMediaQueryMinWidth: (mediaQuery) ->
+    mediaQuery.match(/\d+/)
+
   _setPictureImgSrc: ($el, value) ->
     $el.children("img").attr "src", value
 

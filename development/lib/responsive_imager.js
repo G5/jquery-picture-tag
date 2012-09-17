@@ -9,41 +9,44 @@
 
     function ResponsiveImage($el) {
       this.$el = $el;
-      this._doSomething = __bind(this._doSomething, this);
+      this._replacePictureImgSrcWithBestSourceSrcsetSrc = __bind(this._replacePictureImgSrcWithBestSourceSrcsetSrc, this);
 
-      this.highestMatch = 0;
+      this.largestMediaMinWidth = 0;
       this.newSrc = void 0;
-      this.mediaQuery = void 0;
-      this.screenWidth = 0;
-      this._doSomething();
-      this._initBehavior();
+      this._replacePictureImgSrcWithBestSourceSrcsetSrc();
+      this._onResizeReplacePictureImgSrcWithBestSourceSrcsetSrc();
     }
 
-    ResponsiveImage.prototype._initBehavior = function() {
-      return $(window).resize(this._doSomething);
+    ResponsiveImage.prototype._onResizeReplacePictureImgSrcWithBestSourceSrcsetSrc = function() {
+      return $(window).resize(this._replacePictureImgSrcWithBestSourceSrcsetSrc);
     };
 
-    ResponsiveImage.prototype._doSomething = function() {
-      var _this = this;
-      this.highestMatch = 0;
-      this.smallestSource = this.$el.children("source:not([media])");
-      this.newSrc = this._getSrcFromSrcset(this.smallestSource);
+    ResponsiveImage.prototype._replacePictureImgSrcWithBestSourceSrcsetSrc = function() {
+      var smallestSource,
+        _this = this;
+      this.largestMediaMinWidth = 0;
+      smallestSource = this.$el.children("source:not([media])");
+      this.newSrc = this._getSrcFromSrcset(smallestSource);
       this.$el.children("source").each(function(i, el) {
-        _this.mediaQuery = $(el).attr("media");
-        return _this._something(el);
+        return _this._keepSrcIfBestMediaMatch(el);
       });
       return this._setPictureImgSrc(this.$el, this.newSrc);
     };
 
-    ResponsiveImage.prototype._something = function(el) {
-      if (matchMedia(this.mediaQuery).matches) {
-        this.screenWidth = this.mediaQuery.match(/\d+/);
-        if (this.screenWidth >= this.highestMatch) {
-          this.highestMatch = this.screenWidth;
-          this.newSrc = this._getSrcFromSrcset($(el));
-          return console.log(this.newSrc);
+    ResponsiveImage.prototype._keepSrcIfBestMediaMatch = function(el) {
+      var mediaQuery, mediaQueryMinWidth;
+      mediaQuery = $(el).attr("media");
+      if (matchMedia(mediaQuery).matches) {
+        mediaQueryMinWidth = this._getMediaQueryMinWidth(mediaQuery);
+        if (mediaQueryMinWidth >= this.largestMediaMinWidth) {
+          this.largestMediaMinWidth = mediaQueryMinWidth;
+          return this.newSrc = this._getSrcFromSrcset($(el));
         }
       }
+    };
+
+    ResponsiveImage.prototype._getMediaQueryMinWidth = function(mediaQuery) {
+      return mediaQuery.match(/\d+/);
     };
 
     ResponsiveImage.prototype._setPictureImgSrc = function($el, value) {
