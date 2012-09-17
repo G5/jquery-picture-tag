@@ -7,17 +7,22 @@ COFFEE_FILES = [
   "responsive_imager.coffee"
 ]
 
+SPEC_FILES = [
+  "responsiveImagerSpec.coffee"
+]
+
 task "build", "Package for distribution", ->
   emptyLib()
-  compileCoffee(false)
+  compileSrc(false)
 
 task "build:development", "Watch for changes in src and update development package", ->
-  compileCoffee(true)
+  compileSrc(true)
+  compileSpec()
 
 emptyLib = ->
   execute "rm", ["-r", "lib"]
 
-compileCoffee = (development, version = null) ->
+compileSrc = (development, version = null) ->
   behavior = if development then "-w" else "-c"
   outputPath = if development then "development/lib" else "lib"
   outputFilename = "responsive_imager.js"
@@ -30,6 +35,21 @@ compileCoffee = (development, version = null) ->
   ]
   # Add files to compile in proper order
   options.push "src/#{file}" for file in COFFEE_FILES
+  execute "coffee", options
+
+compileSpec = () ->
+  behavior = "-w"
+  outputPath = "development/spec"
+  outputFilename = "responsiveImagerSpec.js"
+  options = [
+    "-j",
+    outputFilename,
+    behavior,
+    "-o",
+    outputPath
+  ]
+  # Add files to compile in proper order
+  options.push "spec/#{file}" for file in SPEC_FILES
   execute "coffee", options
 
 execute = (command, options, callback = null) ->
