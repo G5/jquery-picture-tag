@@ -9,6 +9,7 @@ class @ResponsiveImage
 
   doSomething: ->
     @highestMatch = 0
+    @mediaSource = @$el.children("source:not([media])").attr("srcset").match(/^\S+/)[0]
     # iterate through sources
     @$el.children("source").each (i, el) =>
       @mediaQuery = $(el).attr("media")
@@ -21,9 +22,9 @@ class @ResponsiveImage
           @mediaSource = $(el).attr("srcset").match(/^\S+/)[0]
           console.log @mediaSource
     # swap out the src
-    if @highestMatch > 0
-      @$el.children("img").attr "src", @mediaSource
-      console.log @mediaSource
+    console.log @mediaSource
+    @$el.children("img").attr "src", @mediaSource
+      
 
 $.fn.makeResponsive = () ->
   $pictures = this

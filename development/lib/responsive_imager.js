@@ -17,6 +17,7 @@
     ResponsiveImage.prototype.doSomething = function() {
       var _this = this;
       this.highestMatch = 0;
+      this.mediaSource = this.$el.children("source:not([media])").attr("srcset").match(/^\S+/)[0];
       this.$el.children("source").each(function(i, el) {
         _this.mediaQuery = $(el).attr("media");
         if (matchMedia(_this.mediaQuery).matches) {
@@ -28,10 +29,8 @@
           }
         }
       });
-      if (this.highestMatch > 0) {
-        this.$el.children("img").attr("src", this.mediaSource);
-        return console.log(this.mediaSource);
-      }
+      console.log(this.mediaSource);
+      return this.$el.children("img").attr("src", this.mediaSource);
     };
 
     return ResponsiveImage;
