@@ -12,7 +12,7 @@
       this._doSomething = __bind(this._doSomething, this);
 
       this.highestMatch = 0;
-      this.mediaSource = void 0;
+      this.newSrc = void 0;
       this.mediaQuery = void 0;
       this.screenWidth = 0;
       this._doSomething();
@@ -26,24 +26,36 @@
     ResponsiveImage.prototype._doSomething = function() {
       var _this = this;
       this.highestMatch = 0;
-      this.mediaSource = this._getSrc(this.$el.children("source:not([media])"));
+      this.smallestSource = this.$el.children("source:not([media])");
+      this.newSrc = this._getSrcFromSrcset(this.smallestSource);
       this.$el.children("source").each(function(i, el) {
         _this.mediaQuery = $(el).attr("media");
-        if (matchMedia(_this.mediaQuery).matches) {
-          _this.screenWidth = _this.mediaQuery.match(/\d+/);
-          if (_this.screenWidth >= _this.highestMatch) {
-            _this.highestMatch = _this.screenWidth;
-            _this.mediaSource = _this._getSrc($(el));
-            return console.log(_this.mediaSource);
-          }
-        }
+        return _this._something(el);
       });
-      console.log(this.mediaSource);
-      return this.$el.children("img").attr("src", this.mediaSource);
+      return this._setPictureImgSrc(this.$el, this.newSrc);
     };
 
-    ResponsiveImage.prototype._getSrc = function($el) {
-      return $el.attr("srcset").match(/^\S+/)[0];
+    ResponsiveImage.prototype._something = function(el) {
+      if (matchMedia(this.mediaQuery).matches) {
+        this.screenWidth = this.mediaQuery.match(/\d+/);
+        if (this.screenWidth >= this.highestMatch) {
+          this.highestMatch = this.screenWidth;
+          this.newSrc = this._getSrcFromSrcset($(el));
+          return console.log(this.newSrc);
+        }
+      }
+    };
+
+    ResponsiveImage.prototype._setPictureImgSrc = function($el, value) {
+      return $el.children("img").attr("src", value);
+    };
+
+    ResponsiveImage.prototype._getSrcFromSrcset = function($el) {
+      return this._getSrcset($el).match(/^\S+/)[0];
+    };
+
+    ResponsiveImage.prototype._getSrcset = function($el) {
+      return $el.attr("srcset");
     };
 
     return ResponsiveImage;

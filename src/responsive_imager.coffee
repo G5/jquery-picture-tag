@@ -3,7 +3,7 @@ $ = jQuery
 class @ResponsiveImage
   constructor: (@$el) ->
     @highestMatch = 0
-    @mediaSource = undefined
+    @newSrc = undefined
     @mediaQuery = undefined
     @screenWidth = 0
 
@@ -15,24 +15,32 @@ class @ResponsiveImage
 
   _doSomething: =>
     @highestMatch = 0
-    @mediaSource = @_getSrc(@$el.children("source:not([media])"))
+    @smallestSource = @$el.children("source:not([media])")
+    @newSrc = @_getSrcFromSrcset(@smallestSource)
     # iterate through sources
     @$el.children("source").each (i, el) =>
       @mediaQuery = $(el).attr("media")
-      # if source media query matches
-      if matchMedia(@mediaQuery).matches
-        @screenWidth = @mediaQuery.match(/\d+/)
-        # see if its the best match
-        if @screenWidth >= @highestMatch
-          @highestMatch = @screenWidth
-          @mediaSource = @_getSrc($(el))
-          console.log @mediaSource
-    # swap out the src
-    console.log @mediaSource
-    @$el.children("img").attr "src", @mediaSource
+      @_something(el)
+    @_setPictureImgSrc(@$el, @newSrc)
 
-  _getSrc: ($el) ->
-    $el.attr("srcset").match(/^\S+/)[0]
+  _something: (el) ->
+    # if source media query matches
+    if matchMedia(@mediaQuery).matches
+      @screenWidth = @mediaQuery.match(/\d+/)
+      # see if its the best match
+      if @screenWidth >= @highestMatch
+        @highestMatch = @screenWidth
+        @newSrc = @_getSrcFromSrcset($(el))
+        console.log @newSrc
+  
+  _setPictureImgSrc: ($el, value) ->
+    $el.children("img").attr "src", value
+
+  _getSrcFromSrcset: ($el) ->
+    @_getSrcset($el).match(/^\S+/)[0]
+
+  _getSrcset: ($el) ->
+    $el.attr("srcset")
 
 $.fn.makeResponsive = () ->
   $pictures = this
