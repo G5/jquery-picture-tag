@@ -3,7 +3,11 @@
 
   this.ResponsiveImage = (function() {
 
-    function ResponsiveImage() {}
+    function ResponsiveImage(element) {
+      this.element = element;
+    }
+
+    ResponsiveImage.prototype.element = ResponsiveImage.element;
 
     ResponsiveImage.prototype.mobile = function() {
       return true;

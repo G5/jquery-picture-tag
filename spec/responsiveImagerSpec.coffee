@@ -1,4 +1,4 @@
-describe "ResponsiveImage", ->
-  it "responds to mobile", ->
-    image = new ResponsiveImage()
-    expect(image.mobile()).toEqual true
+describe "jQuery extendo", ->
+  it "responds to doSomething", ->
+    image = new ResponsiveImage($('img'))
+    expect(image.element).toEqual $('img')
