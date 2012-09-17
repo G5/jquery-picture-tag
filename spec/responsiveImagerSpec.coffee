@@ -1,4 +1,4 @@
 describe "ResponsiveImage", ->
-  it "responds to mobile", ->
+  it "responsds to mobile", ->
     image = new ResponsiveImage()
     expect(image.mobile()).toEqual true
