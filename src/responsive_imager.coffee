@@ -7,7 +7,13 @@ class @ResponsiveImage
     @mediaQuery = undefined
     @screenWidth = 0
 
-  doSomething: ->
+    @_doSomething()
+    @_initBehavior()
+
+  _initBehavior: ->
+    $(window).resize @_doSomething
+
+  _doSomething: =>
     @highestMatch = 0
     @mediaSource = @$el.children("source:not([media])").attr("srcset").match(/^\S+/)[0]
     # iterate through sources
@@ -30,4 +36,3 @@ $.fn.makeResponsive = () ->
   $pictures = this
   $pictures.each ->
     ri = new ResponsiveImage($(this))
-    ri.doSomething()
