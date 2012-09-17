@@ -14,6 +14,6 @@
 
 ```bash
   cake build:development
-  open specRunner.html
+  open spec/specRunner.html
 ```
 
