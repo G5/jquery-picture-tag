@@ -28,7 +28,7 @@ class @ResponsiveImage
         @newSrc = @_getSrcFromSrcset($(el))
 
   _getMediaQueryMinWidth: (mediaQuery) ->
-    mediaQuery.match(/\d+/)
+    parseInt mediaQuery.match(/\d+/)[0]
 
   _setPictureImgSrc: ($el, value) ->
     $el.children("img").attr "src", value

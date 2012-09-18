@@ -46,7 +46,7 @@
     };
 
     ResponsiveImage.prototype._getMediaQueryMinWidth = function(mediaQuery) {
-      return mediaQuery.match(/\d+/);
+      return parseInt(mediaQuery.match(/\d+/)[0]);
     };
 
     ResponsiveImage.prototype._setPictureImgSrc = function($el, value) {
