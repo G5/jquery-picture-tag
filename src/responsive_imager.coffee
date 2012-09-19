@@ -21,7 +21,7 @@ class @ResponsiveImage
 
   _keepSrcIfBestMediaMatch: (el) ->
     mediaQuery = $(el).attr("media")
-    if matchMedia(mediaQuery).matches
+    if mediaQuery && matchMedia(mediaQuery).matches
       mediaQueryMinWidth = @_getMediaQueryMinWidth(mediaQuery)
       if mediaQueryMinWidth >= @largestMediaMinWidth
         @largestMediaMinWidth = mediaQueryMinWidth
