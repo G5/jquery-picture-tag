@@ -6,14 +6,14 @@ $el = $('<picture>
       </picture>')
     
 $source = $($el.children('source')[0])
-responsiveImage = null
-afterEach -> responsiveImage = null
+picture = null
+afterEach -> picture = null
 
 describe "jQuery extendo", ->
-  it "responds to makeResponsive", ->
-    expect($el.makeResponsive()).toBeDefined
+  it "responds to responsivePicture", ->
+    expect($el.responsivePicture()).toBeDefined
     
-describe "ResponsiveImage", ->
+describe "ResponsivePicture", ->
 
   describe "media query logic", ->
   
@@ -21,35 +21,35 @@ describe "ResponsiveImage", ->
       beforeEach ->
         mock = window.matchMedia("(min-width: 10px)")
         spyOn(window, 'matchMedia').andReturn(mock)
-        responsiveImage = new ResponsiveImage($el)
+        picture = new ResponsivePicture($el)
     
       it "grabs the width from the media attr", ->
-        expect(responsiveImage._getMediaQueryMinWidth("<source media='(min-width: 1200px)'>")).toBe 1200
+        expect(picture._getMediaQueryMinWidth("<source media='(min-width: 1200px)'>")).toBe 1200
       
       it "sets the img tag src attr with given value", ->
-        responsiveImage._setPictureImgSrc($el, "some_value")
+        picture._setPictureImgSrc($el, "some_value")
         expect($el.children('img').attr('src')).toEqual "some_value"
       
       it "gets value from srcset fo any element", ->
-        expect( responsiveImage._getSrcset($source) ).toBe "images/large-1.jpg 1x"
+        expect( picture._getSrcset($source) ).toBe "images/large-1.jpg 1x"
     
       it "grabs the img path from a srcset", ->
-        expect( responsiveImage._getSrcFromSrcset($source)).toBe "images/large-1.jpg"
+        expect( picture._getSrcFromSrcset($source)).toBe "images/large-1.jpg"
       
       it "sets the @largestMediaMinWidth to the media query min-width", ->
-        expect( responsiveImage.largestMediaMinWidth ).toBe 980
+        expect( picture.largestMediaMinWidth ).toBe 980
     
     
       it "assigns a higher largestMediaMinWidth", ->
         el = '<source media="(min-width: 1080px)" srcset="images/large-1.jpg 1x">'
-        responsiveImage._keepSrcIfBestMediaMatch($(el))
-        expect( responsiveImage.largestMediaMinWidth ).toBe 1080
+        picture._keepSrcIfBestMediaMatch($(el))
+        expect( picture.largestMediaMinWidth ).toBe 1080
         
     describe "when the window is too small for any match", ->
       beforeEach ->
         mock = window.matchMedia("(min-width: 10000px)")
         spyOn(window, 'matchMedia').andReturn(mock)
-        responsiveImage = new ResponsiveImage($el)
+        picture = new ResponsivePicture($el)
         
       it "keeps the @largestMediaMinWidth at 0", ->
-        expect( responsiveImage.largestMediaMinWidth ).toBe 0
+        expect( picture.largestMediaMinWidth ).toBe 0

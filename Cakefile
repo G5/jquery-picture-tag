@@ -4,11 +4,11 @@ fs = require 'fs'
 {spawn, exec} = require 'child_process'
 
 COFFEE_FILES = [
-  "responsive_imager.coffee"
+  "responsive_picture.coffee"
 ]
 
 SPEC_FILES = [
-  "responsiveImagerSpec.coffee"
+  "responsive_picture_spec.coffee"
 ]
 
 task "build", "Package for distribution", ->
@@ -25,7 +25,7 @@ emptyLib = ->
 compileSrc = (development, version = null) ->
   behavior = if development then "-w" else "-c"
   outputPath = if development then "development/lib" else "lib"
-  outputFilename = "responsive_imager.js"
+  outputFilename = "responsive_picture.js"
   options = [
     "-j",
     outputFilename,
@@ -40,7 +40,7 @@ compileSrc = (development, version = null) ->
 compileSpec = () ->
   behavior = "-w"
   outputPath = "development/spec"
-  outputFilename = "responsiveImagerSpec.js"
+  outputFilename = "responsive_picture_spec.js"
   options = [
     "-j",
     outputFilename,
