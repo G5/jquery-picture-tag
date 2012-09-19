@@ -1,6 +1,6 @@
 $ = jQuery
 
-class @ResponsiveImage
+class @ResponsivePicture
   constructor: (@$el) ->
     @largestMediaMinWidth = 0
     @newSrc = undefined
@@ -39,7 +39,6 @@ class @ResponsiveImage
   _getSrcset: ($el) ->
     $el.attr("srcset")
 
-$.fn.makeResponsive = () ->
-  $pictures = this
-  $pictures.each ->
-    ri = new ResponsiveImage($(this))
+$.fn.responsivePicture = () ->
+  this.each ->
+    new ResponsivePicture($(this))
