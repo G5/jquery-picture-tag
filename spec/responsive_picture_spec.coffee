@@ -16,6 +16,18 @@ describe "jQuery extendo", ->
 describe "ResponsivePicture", ->
 
   describe "media query logic", ->
+    
+    describe "getting the src from srcset", ->
+      beforeEach ->
+        picture = new ResponsivePicture($el)
+      
+    it "ignores the ',' when using multiple queries", ->
+      el = '<source media="(min-width: 1080px)" srcset="images/large-1@1x.jpg, images/large-1.jpg@2x 2x, ">'
+      expect( picture._getSrcFromSrcset($(el)) ).toEqual "images/large-1@1x.jpg"
+    
+    it "grabs the src before the 1x"
+      el = '<source media="(min-width: 1080px)" srcset="images/large-1@1x.jpg 1x, images/large-1.jpg@2x 2x, ">'
+      expect( picture._getSrcFromSrcset($(el)) ).toEqual "images/large-1@1x.jpg"
   
     describe "when the window is large enough for a match", ->
       beforeEach ->

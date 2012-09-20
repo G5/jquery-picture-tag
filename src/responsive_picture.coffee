@@ -34,7 +34,7 @@ class @ResponsivePicture
     $el.children("img").attr "src", value
 
   _getSrcFromSrcset: ($el) ->
-    @_getSrcset($el).match(/^\S+/)[0]
+    @_getSrcset($el).match(/^\S+?(?=,|\s)/)[0]
 
   _getSrcset: ($el) ->
     $el.attr("srcset")

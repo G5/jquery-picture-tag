@@ -54,7 +54,7 @@
     };
 
     ResponsivePicture.prototype._getSrcFromSrcset = function($el) {
-      return this._getSrcset($el).match(/^\S+/)[0];
+      return this._getSrcset($el).match(/^\S+?(?=,|\s)/)[0];
     };
 
     ResponsivePicture.prototype._getSrcset = function($el) {

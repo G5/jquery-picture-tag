@@ -25,6 +25,13 @@
 
   describe("ResponsivePicture", function() {
     return describe("media query logic", function() {
+      describe("getting the src from srcset", function() {});
+      it("ignores the ',' when using multiple queries", function() {
+        var el;
+        picture = new ResponsivePicture($el);
+        el = '<source media="(min-width: 1080px)" srcset="images/large-1@1x.jpg, images/large-1.jpg@2x 2x, ">';
+        return expect(picture._getSrcFromSrcset($(el))).toEqual("images/large-1@1x.jpg");
+      });
       describe("when the window is large enough for a match", function() {
         beforeEach(function() {
           var mock;
