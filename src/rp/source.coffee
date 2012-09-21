@@ -7,4 +7,4 @@ class @RP.Source
      @media.isBetterThan other.media
 
   src: ->
-    @srcset.match(/^\S+/)[0] if @srcset
+    @srcset.match(/^\S+?(?=,|\s)/)[0] if @srcset
