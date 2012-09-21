@@ -16,6 +16,6 @@ describe "RP.Img", ->
     describe "display", ->
       beforeEach ->
         spyOn(@img.$el, 'attr')
-        @img.media.display()
+        @img.display()
       it "calls attr on $el once", ->
         expect(@img.$el.attr.calls.length).toEqual(1)

@@ -4,8 +4,7 @@ class @RP.Source
     @srcset = @$el.attr "srcset"
 
   isBetterThan: (other) ->
-    thing = @media.isBetterThan other.media
-    thing
+     @media.isBetterThan other.media
 
   src: ->
     @srcset.match(/^\S+/)[0] if @srcset

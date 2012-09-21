@@ -14,15 +14,15 @@
 
     function Picture($el) {
       this.$el = $el;
-      this._displayBestSrc = __bind(this._displayBestSrc, this);
+      this._displayBest = __bind(this._displayBest, this);
 
       this.sources = new RP.Sources(this.$el.children("source"));
       this.img = new RP.Img(this.$el.children("img:first"));
-      this._displayBestSrc();
-      $(window).resize(this._displayBestSrc);
+      this._displayBest();
+      $(window).resize(this._displayBest);
     }
 
-    Picture.prototype._displayBestSrc = function() {
+    Picture.prototype._displayBest = function() {
       return this.img.display(this.sources.best());
     };
 
@@ -85,9 +85,7 @@
     }
 
     Source.prototype.isBetterThan = function(other) {
-      var thing;
-      thing = this.media.isBetterThan(other.media);
-      return thing;
+      return this.media.isBetterThan(other.media);
     };
 
     Source.prototype.src = function() {

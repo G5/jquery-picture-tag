@@ -38,18 +38,18 @@
     describe("method", function() {
       xdescribe("constructor", function() {
         beforeEach(function() {
-          return spyOn(this.picture, '_displayBestSrc');
+          return spyOn(this.picture, '_displayBest');
         });
-        return it("calls _displayBestSrc once", function() {
-          return expect(this.picture._displayBestSrc).toEqual(1);
+        return it("calls _displayBest once", function() {
+          return expect(this.picture._displayBest).toEqual(1);
         });
       });
-      return describe("_displayBestSrc", function() {
+      return describe("_displayBest", function() {
         beforeEach(function() {
-          spyOn(this.picture, '_displayBestSrc').andCallThrough();
+          spyOn(this.picture, '_displayBest').andCallThrough();
           spyOn(this.picture.sources, 'best');
           spyOn(this.picture.img, 'display');
-          return this.picture._displayBestSrc();
+          return this.picture._displayBest();
         });
         it("calls best on sources once", function() {
           return expect(this.picture.sources.best.calls.length).toEqual(1);
@@ -62,10 +62,16 @@
     return describe("event", function() {
       return describe("window resize", function() {
         beforeEach(function() {
+          spyOn(this.picture, '_displayBest').andCallThrough();
+          spyOn(this.picture.sources, 'best');
+          spyOn(this.picture.img, 'display');
           return $(window).resize();
         });
-        return it("calls _displayBestSrc once", function() {
-          return expect(this.picture._displayBestSrc).toEqual(1);
+        it("calls best on sources once", function() {
+          return expect(this.picture.sources.best.calls.length).toEqual(1);
+        });
+        return it("calls display on img once", function() {
+          return expect(this.picture.img.display.calls.length).toEqual(1);
         });
       });
     });
@@ -88,7 +94,7 @@
       return describe("display", function() {
         beforeEach(function() {
           spyOn(this.img.$el, 'attr');
-          return this.img.media.display();
+          return this.img.display();
         });
         return it("calls attr on $el once", function() {
           return expect(this.img.$el.attr.calls.length).toEqual(1);
@@ -116,7 +122,7 @@
           return expect(this.sources.defaultSource).toEqual(jasmine.any(RP.Source));
         });
       });
-      return describe("mediaSources", function() {
+      return xdescribe("mediaSources", function() {
         return it("is of type jQuery Object", function() {
           return expect(this.sources.mediaSources).toEqual(jasmine.any($));
         });
@@ -150,9 +156,14 @@
       return this.source = new RP.Source($el.children("source:first"));
     });
     describe("attribute", function() {
-      return describe("media", function() {
+      describe("media", function() {
         return it("is of type RP.Source", function() {
           return expect(this.source.media).toEqual(jasmine.any(RP.Media));
+        });
+      });
+      return describe("srcset", function() {
+        return it("is of type String", function() {
+          return expect(this.source.srcset).toEqual(jasmine.any(String));
         });
       });
     });
@@ -166,14 +177,9 @@
           return expect(this.source.media.isBetterThan.calls.length).toEqual(1);
         });
       });
-      describe("src", function() {
+      return describe("src", function() {
         return it("returns a String", function() {
           return expect(this.source.src()).toEqual(jasmine.any(String));
-        });
-      });
-      return describe("_srcset", function() {
-        return it("returns a String", function() {
-          return expect(this.source._srcset()).toEqual(jasmine.any(String));
         });
       });
     });

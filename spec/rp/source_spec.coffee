@@ -17,6 +17,10 @@ describe "RP.Source", ->
       it "is of type RP.Source", ->
         expect(@source.media).toEqual(jasmine.any(RP.Media))
 
+    describe "srcset", ->
+      it "is of type String", ->
+        expect(@source.srcset).toEqual(jasmine.any(String))
+
   describe "method", ->
 
     describe "isBetterThan", ->
@@ -29,7 +33,3 @@ describe "RP.Source", ->
     describe "src", ->
       it "returns a String", ->
         expect(@source.src()).toEqual(jasmine.any(String))
-
-    describe "_srcset", ->
-      it "returns a String", ->
-        expect(@source._srcset()).toEqual(jasmine.any(String))

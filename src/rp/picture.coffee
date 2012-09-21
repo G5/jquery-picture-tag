@@ -3,8 +3,8 @@ class @RP.Picture
     @sources = new RP.Sources(@$el.children "source")
     @img = new RP.Img(@$el.children("img:first"))
 
-    @_displayBestSrc()
-    $(window).resize @_displayBestSrc
+    @_displayBest()
+    $(window).resize @_displayBest
 
-  _displayBestSrc: =>
+  _displayBest: =>
     @img.display @sources.best()

@@ -26,16 +26,16 @@ describe "RP.Picture", ->
     # TODO: how to spyOn method call in constructor?
     xdescribe "constructor", ->
       beforeEach ->
-        spyOn(@picture, '_displayBestSrc')
-      it "calls _displayBestSrc once", ->
-        expect(@picture._displayBestSrc).toEqual(1)
+        spyOn(@picture, '_displayBest')
+      it "calls _displayBest once", ->
+        expect(@picture._displayBest).toEqual(1)
 
-    describe "_displayBestSrc", ->
+    describe "_displayBest", ->
       beforeEach ->
-        spyOn(@picture, '_displayBestSrc').andCallThrough()
+        spyOn(@picture, '_displayBest').andCallThrough()
         spyOn(@picture.sources, 'best')
         spyOn(@picture.img, 'display')
-        @picture._displayBestSrc()
+        @picture._displayBest()
 
       it "calls best on sources once", ->
         expect(@picture.sources.best.calls.length).toEqual(1)
@@ -46,7 +46,13 @@ describe "RP.Picture", ->
   describe "event", ->
     describe "window resize", ->
       beforeEach ->
+        spyOn(@picture, '_displayBest').andCallThrough()
+        spyOn(@picture.sources, 'best')
+        spyOn(@picture.img, 'display')
         $(window).resize()
 
-      it "calls _displayBestSrc once", ->
-        expect(@picture._displayBestSrc).toEqual(1)
+      it "calls best on sources once", ->
+        expect(@picture.sources.best.calls.length).toEqual(1)
+
+      it "calls display on img once", ->
+        expect(@picture.img.display.calls.length).toEqual(1)
