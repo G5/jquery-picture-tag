@@ -20,7 +20,6 @@ describe "RP.Sources", ->
     # TODO: be more specific
     describe "mediaSources", ->
       it "is of type jQuery Object", ->
-        console.log @sources.mediaSources
         expect(@sources.mediaSources).toEqual(jasmine.any($))
 
   describe "method", ->

@@ -6,7 +6,5 @@ class @RP.Picture
     @_displayBestSrc()
     $(window).resize @_displayBestSrc
 
-  _displayBestSrc: ->
-    console.log @img
-    console.log @sources
-    @img.display @sources.best() if @img and @sources
+  _displayBestSrc: =>
+    @img.display @sources.best()

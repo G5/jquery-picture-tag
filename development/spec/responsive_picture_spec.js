@@ -118,7 +118,6 @@
       });
       return describe("mediaSources", function() {
         return it("is of type jQuery Object", function() {
-          console.log(this.sources.mediaSources);
           return expect(this.sources.mediaSources).toEqual(jasmine.any($));
         });
       });

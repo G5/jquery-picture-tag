@@ -14,6 +14,8 @@
 
     function Picture($el) {
       this.$el = $el;
+      this._displayBestSrc = __bind(this._displayBestSrc, this);
+
       this.sources = new RP.Sources(this.$el.children("source"));
       this.img = new RP.Img(this.$el.children("img:first"));
       this._displayBestSrc();
@@ -21,11 +23,7 @@
     }
 
     Picture.prototype._displayBestSrc = function() {
-      console.log(this.img);
-      console.log(this.sources);
-      if (this.img && this.sources) {
-        return this.img.display(this.sources.best());
-      }
+      return this.img.display(this.sources.best());
     };
 
     return Picture;
@@ -64,11 +62,9 @@
       bestSoFar = this.defaultSource;
       this.mediaSources.each(function(i, mediaSource) {
         if (mediaSource.isBetterThan(bestSoFar)) {
-          bestSoFar = mediaSource;
-          return console.log(bestSoFar);
+          return bestSoFar = mediaSource;
         }
       });
-      console.log(bestSoFar);
       return bestSoFar.src();
     };
 
@@ -91,7 +87,6 @@
     Source.prototype.isBetterThan = function(other) {
       var thing;
       thing = this.media.isBetterThan(other.media);
-      console.log(thing);
       return thing;
     };
 
@@ -112,15 +107,11 @@
     }
 
     Media.prototype.isBetterThan = function(other) {
-      console.log(this.query);
       if (this._matches() && !other._matches()) {
-        console.log("self matches");
         return true;
       } else if (this._matches() && other._matches()) {
-        console.log("size comparison");
         return this._minWidth >= other.minWidth;
       } else {
-        console.log("self doesn't match");
         return false;
       }
     };

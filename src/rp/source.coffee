@@ -5,7 +5,6 @@ class @RP.Source
 
   isBetterThan: (other) ->
     thing = @media.isBetterThan other.media
-    console.log thing
     thing
 
   src: ->

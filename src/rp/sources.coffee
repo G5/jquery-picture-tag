@@ -8,8 +8,6 @@ class @RP.Sources
     @mediaSources.each (i, mediaSource) =>
       if mediaSource.isBetterThan bestSoFar
         bestSoFar = mediaSource
-        console.log bestSoFar
-    console.log bestSoFar
     bestSoFar.src()
 
   _newSource: (i, el) =>
