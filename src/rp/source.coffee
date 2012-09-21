@@ -1,12 +1,12 @@
-class RP.Source
+class @RP.Source
   constructor: (@$el) ->
     @media = new RP.Media @$el.attr("media")
+    @srcset = @$el.attr "srcset"
 
   isBetterThan: (other) ->
-    @media.isBetterThan other.media
+    thing = @media.isBetterThan other.media
+    console.log thing
+    thing
 
   src: ->
-    @_srcset().match(/^\S+/)[0]
-
-  _srcset: ->
-    @$el.attr "srcset"
+    @srcset.match(/^\S+/)[0] if @srcset

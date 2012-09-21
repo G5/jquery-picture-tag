@@ -25,17 +25,11 @@
     });
     describe("attribute", function() {
       describe("sources", function() {
-        it("is defined", function() {
-          return expect(this.picture.sources).toBeDefined;
-        });
         return it("is of type RP.Sources", function() {
           return expect(this.picture.sources).toEqual(jasmine.any(RP.Sources));
         });
       });
       return describe("img", function() {
-        it("is defined", function() {
-          return expect(this.picture.img).toBeDefined;
-        });
         return it("is of type RP.Img", function() {
           return expect(this.picture.img).toEqual(jasmine.any(RP.Img));
         });
@@ -118,19 +112,14 @@
     });
     describe("attribute", function() {
       describe("defaultSource", function() {
-        it("is defined", function() {
-          return expect(this.sources.defaultSource).toBeDefined;
-        });
         return it("is of type RP.Source", function() {
           return expect(this.sources.defaultSource).toEqual(jasmine.any(RP.Source));
         });
       });
       return describe("mediaSources", function() {
-        it("is defined", function() {
-          return expect(this.sources.mediaSources).toBeDefined;
-        });
-        return it("is of type Object", function() {
-          return expect(this.sources.mediaSources).toEqual(jasmine.any(Object));
+        return it("is of type jQuery Object", function() {
+          console.log(this.sources.mediaSources);
+          return expect(this.sources.mediaSources).toEqual(jasmine.any($));
         });
       });
     });
@@ -163,9 +152,6 @@
     });
     describe("attribute", function() {
       return describe("media", function() {
-        it("is defined", function() {
-          return expect(this.source.media).toBeDefined;
-        });
         return it("is of type RP.Source", function() {
           return expect(this.source.media).toEqual(jasmine.any(RP.Media));
         });

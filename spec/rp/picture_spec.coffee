@@ -14,14 +14,10 @@ describe "RP.Picture", ->
   describe "attribute", ->
 
     describe "sources", ->
-      it "is defined", ->
-        expect(@picture.sources).toBeDefined
       it "is of type RP.Sources", ->
         expect(@picture.sources).toEqual(jasmine.any(RP.Sources))
 
     describe "img", ->
-      it "is defined", ->
-        expect(@picture.img).toBeDefined
       it "is of type RP.Img", ->
         expect(@picture.img).toEqual(jasmine.any(RP.Img))
 

@@ -1,4 +1,4 @@
-class RP.Img
+class @RP.Img
   constructor: (@$el) ->
 
   display: (value) ->

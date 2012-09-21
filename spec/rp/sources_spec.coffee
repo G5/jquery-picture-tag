@@ -14,17 +14,14 @@ describe "RP.Sources", ->
   describe "attribute", ->
 
     describe "defaultSource", ->
-      it "is defined", ->
-        expect(@sources.defaultSource).toBeDefined
       it "is of type RP.Source", ->
         expect(@sources.defaultSource).toEqual(jasmine.any(RP.Source))
 
+    # TODO: be more specific
     describe "mediaSources", ->
-      it "is defined", ->
-        expect(@sources.mediaSources).toBeDefined
-      # TODO: be more specific
-      it "is of type Object", ->
-        expect(@sources.mediaSources).toEqual(jasmine.any(Object))
+      it "is of type jQuery Object", ->
+        console.log @sources.mediaSources
+        expect(@sources.mediaSources).toEqual(jasmine.any($))
 
   describe "method", ->
 

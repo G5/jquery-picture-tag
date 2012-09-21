@@ -1,16 +1,20 @@
-class RP.Media
+class @RP.Media
   constructor: (@query) ->
 
   isBetterThan: (other) ->
-    if @matches && !other.matches
+    console.log @query
+    if @_matches() && !other._matches()
+      console.log "self matches"
       true
-    else if @matches && other.matches
-      @minWidth <= other.minWidth
+    else if @_matches() && other._matches()
+      console.log "size comparison"
+      @_minWidth >= other.minWidth
     else
+      console.log "self doesn't match"
       false
 
   _matches: ->
-    @query && mediaMatch(@query).matches
+    @query && matchMedia(@query).matches
 
   _minWidth: ->
     parseInt @query.match(/\d+/)[0]

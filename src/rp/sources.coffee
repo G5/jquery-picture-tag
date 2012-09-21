@@ -1,13 +1,15 @@
-class RP.Sources
+class @RP.Sources
   constructor: (@$els) ->
-    @defaultSource = new RP.Source @$els.find(":not([media])")
-    @mediaSources = @$els.map @_newSource
+    @defaultSource = new RP.Source @$els.filter(":not([media])")
+    @mediaSources = @$els.filter("[media]").map @_newSource
     
   best: =>
     bestSoFar = @defaultSource
     @mediaSources.each (i, mediaSource) =>
       if mediaSource.isBetterThan bestSoFar
         bestSoFar = mediaSource
+        console.log bestSoFar
+    console.log bestSoFar
     bestSoFar.src()
 
   _newSource: (i, el) =>

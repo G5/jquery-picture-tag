@@ -14,8 +14,6 @@ describe "RP.Source", ->
   describe "attribute", ->
 
     describe "media", ->
-      it "is defined", ->
-        expect(@source.media).toBeDefined
       it "is of type RP.Source", ->
         expect(@source.media).toEqual(jasmine.any(RP.Media))
 

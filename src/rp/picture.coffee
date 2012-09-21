@@ -3,8 +3,10 @@ class @RP.Picture
     @sources = new RP.Sources(@$el.children "source")
     @img = new RP.Img(@$el.children("img:first"))
 
-    @_displayBestSrc
+    @_displayBestSrc()
     $(window).resize @_displayBestSrc
 
   _displayBestSrc: ->
-    @img.display @sources.best()
+    console.log @img
+    console.log @sources
+    @img.display @sources.best() if @img and @sources
