@@ -4,11 +4,21 @@ fs = require 'fs'
 {spawn, exec} = require 'child_process'
 
 COFFEE_FILES = [
-  "responsive_picture.coffee"
+  "rp.coffee",
+  "rp/picture.coffee",
+  "rp/img.coffee",
+  "rp/sources.coffee",
+  "rp/source.coffee",
+  "rp/media.coffee",
 ]
 
 SPEC_FILES = [
-  "responsive_picture_spec.coffee"
+  "rp_spec.coffee",
+  "rp/picture_spec.coffee",
+  "rp/img_spec.coffee",
+  "rp/sources_spec.coffee",
+  "rp/source_spec.coffee",
+  "rp/media_spec.coffee",
 ]
 
 task "build", "Package for distribution", ->

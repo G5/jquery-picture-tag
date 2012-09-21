@@ -1,7 +1,5 @@
 class RP.Media
-  constructor: (@attr) ->
-    console.log "media constructor"
-    console.log @attr
+  constructor: (@query) ->
 
   isBetterThan: (other) ->
     if @matches && !other.matches
@@ -11,8 +9,8 @@ class RP.Media
     else
       false
 
-  matches: ->
-    @attr && mediaMatch(@attr).matches
+  _matches: ->
+    @query && mediaMatch(@query).matches
 
-  minWidth: ->
-    parseInt @attr.match(/\d+/)[0]
+  _minWidth: ->
+    parseInt @query.match(/\d+/)[0]

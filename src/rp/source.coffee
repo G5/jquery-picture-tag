@@ -1,8 +1,5 @@
 class RP.Source
   constructor: (@$el) ->
-    console.log "source constructor"
-    console.log @$el
-
     @media = new RP.Media @$el.attr("media")
 
   isBetterThan: (other) ->

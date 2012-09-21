@@ -1,7 +1,5 @@
 class RP.Img
   constructor: (@$el) ->
-    console.log "img constructor"
-    console.log @$el
 
-  replaceWith: (value) ->
+  display: (value) ->
     @$el.attr "src", value
