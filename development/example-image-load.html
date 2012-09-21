@@ -7,7 +7,9 @@
   <script>
     $(function() {
       var tstamp = new Date().getMilliseconds();
-      var img = $('<img src="http://cdn01.dailycaller.com/wp-content/uploads/2012/03/Cat-1.jpg?'+tstamp+'" width="100%"/>');
+      var src = "http://cdn01.dailycaller.com/wp-content/uploads/2012/03/Cat-1.jpg?"+tstamp;
+      var img = $('img:first').clone();
+      img.attr("src", src);
       img.load(function() {
         console.log('img load');
         $('body img').replaceWith(img);

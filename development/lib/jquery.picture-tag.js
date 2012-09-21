@@ -34,10 +34,20 @@
 
     function Img($el) {
       this.$el = $el;
+      this._replace = __bind(this._replace, this);
+
     }
 
     Img.prototype.display = function(value) {
-      return this.$el.attr("src", value);
+      if (value !== this.$el.attr("src")) {
+        this.$el2 = this.$el.clone();
+        this.$el2.attr("src", value);
+        return this.$el2.load(this._replace);
+      }
+    };
+
+    Img.prototype._replace = function() {
+      return this.$el.replaceWith(this.$el2);
     };
 
     return Img;

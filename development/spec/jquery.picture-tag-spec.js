@@ -24,14 +24,9 @@
       return this.picture = new PictureTag.Picture($el);
     });
     describe("attribute", function() {
-      describe("sources", function() {
+      return describe("sources", function() {
         return it("is of type PictureTag.Sources", function() {
           return expect(this.picture.sources).toEqual(jasmine.any(PictureTag.Sources));
-        });
-      });
-      return describe("img", function() {
-        return it("is of type PictureTag.Img", function() {
-          return expect(this.picture.img).toEqual(jasmine.any(PictureTag.Img));
         });
       });
     });
@@ -44,18 +39,23 @@
           return expect(this.picture._displayBest).toEqual(1);
         });
       });
-      return describe("_displayBest", function() {
+      describe("_displayBest", function() {
         beforeEach(function() {
           spyOn(this.picture, '_displayBest').andCallThrough();
+          spyOn(this.picture, '_img');
           spyOn(this.picture.sources, 'best');
-          spyOn(this.picture.img, 'display');
           return this.picture._displayBest();
         });
-        it("calls best on sources once", function() {
+        it("calls _img once", function() {
+          return expect(this.picture._img.calls.length).toEqual(1);
+        });
+        return it("calls best on sources once", function() {
           return expect(this.picture.sources.best.calls.length).toEqual(1);
         });
-        return it("calls display on img once", function() {
-          return expect(this.picture.img.display.calls.length).toEqual(1);
+      });
+      return describe("_img", function() {
+        return it("returns a RP.Img", function() {
+          return expect(this.picture._img()).toEqual(jasmine.any(RP.Img));
         });
       });
     });
@@ -63,15 +63,15 @@
       return describe("window resize", function() {
         beforeEach(function() {
           spyOn(this.picture, '_displayBest').andCallThrough();
+          spyOn(this.picture, '_img');
           spyOn(this.picture.sources, 'best');
-          spyOn(this.picture.img, 'display');
           return $(window).resize();
         });
         it("calls best on sources once", function() {
           return expect(this.picture.sources.best.calls.length).toEqual(1);
         });
         return it("calls display on img once", function() {
-          return expect(this.picture.img.display.calls.length).toEqual(1);
+          return expect(this.picture._img.calls.length).toEqual(1);
         });
       });
     });
