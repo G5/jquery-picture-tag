@@ -1,5 +1,11 @@
 # jQuery Picture Tag
 
+### Examples
+
+```bash
+open development/example.html
+```
+
 ## Contribute
 
 ### You Need Coffee Script
@@ -10,17 +16,9 @@ brew install nodejs
 npm install -g coffee-script
 ```
 
-### Testing
+### Specs
 
 ```bash
 cake build:development
-open spec/specRunner.html
+open development/spec-runner.html
 ```
-
-## TODOs
-
-* parse ALL the media queries
-* parse srcsets
-* test
-* get rid of the flicker - can we do this in js?
-* cache stuff? - talk with shane
