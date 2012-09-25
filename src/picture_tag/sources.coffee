@@ -1,6 +1,6 @@
-class @RP.Sources
+class @PictureTag.Sources
   constructor: (@$els) ->
-    @defaultSource = new RP.Source @$els.filter(":not([media])")
+    @defaultSource = new PictureTag.Source @$els.filter(":not([media])")
     @mediaSources = @$els.filter("[media]").map @_newSource
     
   best: =>
@@ -11,4 +11,4 @@ class @RP.Sources
     bestSoFar.src()
 
   _newSource: (i, el) =>
-    new RP.Source($(el))
+    new PictureTag.Source($(el))

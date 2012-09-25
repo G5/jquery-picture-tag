@@ -1,4 +1,4 @@
-describe "RP.Img", ->
+describe "PictureTag.Img", ->
   $el = $('
     <picture>
       <img media="(min-width: 980px)" srcset="images/large-1.jpg 1x">
@@ -9,7 +9,7 @@ describe "RP.Img", ->
   ')
 
   beforeEach ->
-    @img = new RP.Img($el.children "img:first")
+    @img = new PictureTag.Img($el.children "img:first")
 
   describe "method", ->
 

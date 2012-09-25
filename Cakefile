@@ -4,21 +4,21 @@ fs = require 'fs'
 {spawn, exec} = require 'child_process'
 
 COFFEE_FILES = [
-  "rp.coffee",
-  "rp/picture.coffee",
-  "rp/img.coffee",
-  "rp/sources.coffee",
-  "rp/source.coffee",
-  "rp/media.coffee",
+  "picture_tag.coffee",
+  "picture_tag/picture.coffee",
+  "picture_tag/img.coffee",
+  "picture_tag/sources.coffee",
+  "picture_tag/source.coffee",
+  "picture_tag/media.coffee",
 ]
 
 SPEC_FILES = [
-  "rp_spec.coffee",
-  "rp/picture_spec.coffee",
-  "rp/img_spec.coffee",
-  "rp/sources_spec.coffee",
-  "rp/source_spec.coffee",
-  "rp/media_spec.coffee",
+  "picture_tag_spec.coffee",
+  "picture_tag/picture_spec.coffee",
+  "picture_tag/img_spec.coffee",
+  "picture_tag/sources_spec.coffee",
+  "picture_tag/source_spec.coffee",
+  "picture_tag/media_spec.coffee",
 ]
 
 task "build", "Package for distribution", ->
@@ -35,7 +35,7 @@ emptyLib = ->
 compileSrc = (development, version = null) ->
   behavior = if development then "-w" else "-c"
   outputPath = if development then "development/lib" else "lib"
-  outputFilename = "responsive_picture.js"
+  outputFilename = "jquery.picture-tag.js"
   options = [
     "-j",
     outputFilename,
@@ -50,7 +50,7 @@ compileSrc = (development, version = null) ->
 compileSpec = () ->
   behavior = "-w"
   outputPath = "development/spec"
-  outputFilename = "responsive_picture_spec.js"
+  outputFilename = "jquery.picture-tag-spec.js"
   options = [
     "-j",
     outputFilename,

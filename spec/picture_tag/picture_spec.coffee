@@ -1,4 +1,4 @@
-describe "RP.Picture", ->
+describe "PictureTag.Picture", ->
   $el = $('
     <picture>
       <source media="(min-width: 980px)" srcset="images/large-1.jpg 1x">
@@ -9,17 +9,13 @@ describe "RP.Picture", ->
   ')
 
   beforeEach ->
-    @picture = new RP.Picture($el)
+    @picture = new PictureTag.Picture($el)
 
   describe "attribute", ->
 
     describe "sources", ->
-      it "is of type RP.Sources", ->
-        expect(@picture.sources).toEqual(jasmine.any(RP.Sources))
-
-    describe "img", ->
-      it "is of type RP.Img", ->
-        expect(@picture.img).toEqual(jasmine.any(RP.Img))
+      it "is of type PictureTag.Sources", ->
+        expect(@picture.sources).toEqual(jasmine.any(PictureTag.Sources))
 
   describe "method", ->
 
@@ -33,26 +29,30 @@ describe "RP.Picture", ->
     describe "_displayBest", ->
       beforeEach ->
         spyOn(@picture, '_displayBest').andCallThrough()
+        spyOn(@picture, '_img').andCallThrough()
         spyOn(@picture.sources, 'best')
-        spyOn(@picture.img, 'display')
         @picture._displayBest()
+
+      it "calls _img once", ->
+        expect(@picture._img.calls.length).toEqual(1)
 
       it "calls best on sources once", ->
         expect(@picture.sources.best.calls.length).toEqual(1)
 
-      it "calls display on img once", ->
-        expect(@picture.img.display.calls.length).toEqual(1)
+    describe "_img", ->
+      it "returns a PictureTag.Img", ->
+        expect(@picture._img()).toEqual(jasmine.any(PictureTag.Img))
 
   describe "event", ->
     describe "window resize", ->
       beforeEach ->
         spyOn(@picture, '_displayBest').andCallThrough()
+        spyOn(@picture, '_img').andCallThrough()
         spyOn(@picture.sources, 'best')
-        spyOn(@picture.img, 'display')
         $(window).resize()
 
       it "calls best on sources once", ->
         expect(@picture.sources.best.calls.length).toEqual(1)
 
       it "calls display on img once", ->
-        expect(@picture.img.display.calls.length).toEqual(1)
+        expect(@picture._img.calls.length).toEqual(1)
