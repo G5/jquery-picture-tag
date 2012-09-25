@@ -42,7 +42,7 @@
       describe("_displayBest", function() {
         beforeEach(function() {
           spyOn(this.picture, '_displayBest').andCallThrough();
-          spyOn(this.picture, '_img');
+          spyOn(this.picture, '_img').andCallThrough();
           spyOn(this.picture.sources, 'best');
           return this.picture._displayBest();
         });
@@ -63,7 +63,7 @@
       return describe("window resize", function() {
         beforeEach(function() {
           spyOn(this.picture, '_displayBest').andCallThrough();
-          spyOn(this.picture, '_img');
+          spyOn(this.picture, '_img').andCallThrough();
           spyOn(this.picture.sources, 'best');
           return $(window).resize();
         });

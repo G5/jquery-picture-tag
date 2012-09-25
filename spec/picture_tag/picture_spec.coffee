@@ -29,7 +29,7 @@ describe "PictureTag.Picture", ->
     describe "_displayBest", ->
       beforeEach ->
         spyOn(@picture, '_displayBest').andCallThrough()
-        spyOn(@picture, '_img')
+        spyOn(@picture, '_img').andCallThrough()
         spyOn(@picture.sources, 'best')
         @picture._displayBest()
 
@@ -47,7 +47,7 @@ describe "PictureTag.Picture", ->
     describe "window resize", ->
       beforeEach ->
         spyOn(@picture, '_displayBest').andCallThrough()
-        spyOn(@picture, '_img')
+        spyOn(@picture, '_img').andCallThrough()
         spyOn(@picture.sources, 'best')
         $(window).resize()
 
