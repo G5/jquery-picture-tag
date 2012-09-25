@@ -1,4 +1,4 @@
-describe "RP.Source", ->
+describe "PictureTag.Source", ->
   $el = $('
     <picture>
       <source media="(min-width: 980px)" srcset="images/large-1.jpg 1x">
@@ -9,13 +9,13 @@ describe "RP.Source", ->
   ')
 
   beforeEach ->
-    @source = new RP.Source($el.children "source:first")
+    @source = new PictureTag.Source($el.children "source:first")
 
   describe "attribute", ->
 
     describe "media", ->
-      it "is of type RP.Source", ->
-        expect(@source.media).toEqual(jasmine.any(RP.Media))
+      it "is of type PictureTag.Source", ->
+        expect(@source.media).toEqual(jasmine.any(PictureTag.Media))
 
     describe "srcset", ->
       it "is of type String", ->

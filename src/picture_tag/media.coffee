@@ -1,4 +1,4 @@
-class @RP.Media
+class @PictureTag.Media
   constructor: (@query) ->
 
   isBetterThan: (other) ->

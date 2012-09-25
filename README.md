@@ -1,4 +1,4 @@
-# Responsive Imager
+# jQuery Picture Tag
 
 ## Contribute
 

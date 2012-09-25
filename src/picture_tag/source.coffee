@@ -1,6 +1,6 @@
-class @RP.Source
+class @PictureTag.Source
   constructor: (@$el) ->
-    @media = new RP.Media @$el.attr("media")
+    @media = new PictureTag.Media @$el.attr("media")
     @srcset = @$el.attr "srcset"
 
   isBetterThan: (other) ->

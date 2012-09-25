@@ -1,4 +1,4 @@
-class @RP.Img
+class @PictureTag.Img
   constructor: (@$el) ->
 
   display: (value) ->
