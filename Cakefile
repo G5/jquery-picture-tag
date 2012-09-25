@@ -22,40 +22,64 @@ SPEC_FILES = [
 ]
 
 task "build", "Package for distribution", ->
-  emptyLib()
-  compileSrc(false)
+  fs.readFile 'VERSION', 'utf8', (err, data) ->
+    throw err if err
+    version = data
+    emptyLib()
+    compileSrc(false, version)
 
 task "build:development", "Watch for changes in src and update development package", ->
   compileSrc(true)
   compileSpec()
 
+task "build:tag", "Tag the git repo with the version number", ->
+  fs.readFile 'VERSION', 'utf8', (err, data) ->
+    print data.toString()
+    throw err if err
+    execute "git", ["tag", data]
+
 emptyLib = ->
   execute "rm", ["-r", "lib"]
 
 compileSrc = (development, version = null) ->
-  behavior = if development then "-w" else "-c"
+  outputFilename = "jquery.picture-tag"
+  outputFilename += if version then "-#{version}.js" else ".js"
+  behavior = if development then "--watch" else "--compile"
   outputPath = if development then "development/lib" else "lib"
-  outputFilename = "jquery.picture-tag.js"
   options = [
-    "-j",
+    "--join",
     outputFilename,
     behavior,
-    "-o",
+    "--output",
     outputPath
   ]
   # Add files to compile in proper order
   options.push "src/#{file}" for file in COFFEE_FILES
-  execute "coffee", options
+  execute "coffee", options, ->
+    markVersion("#{outputPath}/#{outputFilename}", version)
+
+markVersion = (file, version) ->
+  comment = """
+    /*
+      jQuery Picture Tag #{version}
+      Built by Bookis Smuin: https://github.com/bookis
+      Built by Jessica Lynn Suttles: https://github.com/jlsuttles
+      Details and source: https://github.com/g5/jquery-picture-tag
+      Demo: https://g5.github.com/jquery-picture-tag
+    */
+
+    """
+  tmpFile = "#{file}.tmp"
+  exec "echo \"#{comment}\" | cat - #{file} > #{tmpFile} && mv #{tmpFile} #{file}"
 
 compileSpec = () ->
-  behavior = "-w"
-  outputPath = "development/spec"
   outputFilename = "jquery.picture-tag-spec.js"
+  outputPath = "development/spec"
   options = [
-    "-j",
+    "--join",
     outputFilename,
-    behavior,
-    "-o",
+    "--watch",
+    "--output",
     outputPath
   ]
   # Add files to compile in proper order
