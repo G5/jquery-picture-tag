@@ -40,8 +40,8 @@ describe "PictureTag.Picture", ->
         expect(@picture.sources.best.calls.length).toEqual(1)
 
     describe "_img", ->
-      it "returns a RP.Img", ->
-        expect(@picture._img()).toEqual(jasmine.any(RP.Img))
+      it "returns a PictureTag.Img", ->
+        expect(@picture._img()).toEqual(jasmine.any(PictureTag.Img))
 
   describe "event", ->
     describe "window resize", ->

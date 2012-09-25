@@ -1,11 +1,17 @@
 <html>
 <head>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-  <title>Responsive Picture</title>
+  <title>jQuery Picture Tag Example</title>
   <script type="text/javascript" charset="utf-8" src="../dependencies/jquery-1.7.2.min.js"></script>
   <script type="text/javascript" charset="utf-8" src="../dependencies/media_match.js"></script>
-  <script type="text/javascript" charset="utf-8" src="lib/responsive_picture.js"></script>
+  <script type="text/javascript" charset="utf-8" src="lib/jquery.picture-tag.js"></script>
   <script type="text/javascript" charset="utf-8" src="javascripts/example.js"></script>
+
+  <script type="text/javascript" charset="utf-8">
+    $(function() {
+      $('picture').pictureTag();
+    });
+  </script>
 </head>
 
 <body>

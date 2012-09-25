@@ -54,8 +54,8 @@
         });
       });
       return describe("_img", function() {
-        return it("returns a RP.Img", function() {
-          return expect(this.picture._img()).toEqual(jasmine.any(RP.Img));
+        return it("returns a PictureTag.Img", function() {
+          return expect(this.picture._img()).toEqual(jasmine.any(PictureTag.Img));
         });
       });
     });

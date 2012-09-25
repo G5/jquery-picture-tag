@@ -14,16 +14,21 @@
 
     function Picture($el) {
       this.$el = $el;
+      this._img = __bind(this._img, this);
+
       this._displayBest = __bind(this._displayBest, this);
 
       this.sources = new PictureTag.Sources(this.$el.children("source"));
-      this.img = new PictureTag.Img(this.$el.children("img:first"));
       this._displayBest();
       $(window).resize(this._displayBest);
     }
 
     Picture.prototype._displayBest = function() {
-      return this.img.display(this.sources.best());
+      return this._img().display(this.sources.best());
+    };
+
+    Picture.prototype._img = function() {
+      return new PictureTag.Img(this.$el.children("img:first"));
     };
 
     return Picture;
