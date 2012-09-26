@@ -26,6 +26,8 @@ jQuery Plugin that implements the [W3C Picture Element Proposal](http://www.w3.o
 
 Include `jquery-picture-tag-x.y.z.js` in your HTML file, where x.y.z is the current version.
 
+If you're using Rails then [jquery_picture_tag-rails](https://github.com/G5/jquery-picture-tag) will include the javascript for you.
+
 ```html
 <script src="jquery-picture-tag-x.y.z.js"></script>
 ```
@@ -35,14 +37,16 @@ Include `jquery-picture-tag-x.y.z.js` in your HTML file, where x.y.z is the curr
 
 Use the [W3C Picture Element Proposal](http://www.w3.org/community/respimg/)'s `<picture>` tag syntax.
 
+If you're using Rails then [picture_tag-rails](https://github.com/G5/picture_tag-rails) will generate the markup for you.
+
 ```html
 <picture alt="Kitty cat!">
-  <source media="(min-width: 1600px)" srcset="cat-large.jpg 1x, cat-large@2x.jpg 2x">
-  <source media="(min-width: 1000px)" srcset="cat-medium.jpg 1x, cat-medium@2x.jpg 2x">
-  <source media="(min-width: 768px)"  srcset="cat-small.jpg 1x, cat-small@2x.jpg 2x">
-  <source media="(min-width: 480px)"  srcset="cat-tiny.jpg 1x, cat-tiny@2x.jpg 2x">
-  <source srcset="cat-tiny.jpg 1x, cat-tiny@2x.jpg 2x">
-  <img alt="Kitty cat!" src="cat-tiny.jpg">
+  <source media="(min-width: 1600px)" srcset="cat-huge.jpg 1x,   cat-huge@2x.jpg 2x">
+  <source media="(min-width: 1000px)" srcset="cat-large.jpg 1x,  cat-large@2x.jpg 2x">
+  <source media="(min-width: 768px)"  srcset="cat-medium.jpg 1x, cat-medium@2x.jpg 2x">
+  <source media="(min-width: 480px)"  srcset="cat-small.jpg 1x,  cat-small@2x.jpg 2x">
+  <source                             srcset="cat-tiny.jpg 1x, cat-tiny@2x.jpg 2x">
+  <img alt="Kitty cat!"               src="cat-tiny.jpg">
 </picture>
 ```
 
@@ -63,38 +67,9 @@ $(function() {
 ```
 
 
-## Examples
+## Example
 
-See [development/example.html](https://github.com/G5/jquery-picture-tag/blob/master/development/example.html).
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8" />
-  <title>jQuery Picture Tag Example</title>
-  <script src="jquery-1.7.2.min.js"></script>
-  <script src="matchMedia.js"></script>
-  <script src="jquery-picture-tag.js"></script>
-
-  <script type="text/javascript" charset="utf-8">
-    $(function() {
-      $('picture').pictureTag();
-    });
-  </script>
-</head>
-
-<body>
-  <picture>
-    <source media="(min-width: 980px)" srcset="images/large-1.jpg 1x">
-    <source media="(min-width: 768px)" srcset="images/med-1.jpg 1x">
-    <source srcset="images/small-1.jpg 1x"> 
-    <img src="images/small-1.jpg" alt=""> 
-  </picture>  
-</body>
-</html>
-```
-
+[development/example.html](https://github.com/G5/jquery-picture-tag/blob/master/development/example.html)
 
 ## TODO
 
