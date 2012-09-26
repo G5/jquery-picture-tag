@@ -1,8 +1,6 @@
 # jQuery Picture Tag
 
-jQuery Plugin that implements the W3C HTML Responsive Images Extension Proposal (the `<picture>` tag)
-
-[w3.org/community/respimg](http://www.w3.org/community/respimg)
+jQuery Plugin that implements the [W3C Picture Element Proposal](http://www.w3.org/community/respimg/) (the `<picture>` tag)
 
 
 ## Current Version
@@ -21,26 +19,31 @@ jQuery Plugin that implements the W3C HTML Responsive Images Extension Proposal 
 ### Production
 
 * [jQuery](http://jquery.com)
-* [matchmedia.js](https://github.com/paulirish/matchMedia.js)
+* [matchMedia.js](https://github.com/paulirish/matchMedia.js) for older browsers
 
 
 ## Installation
 
-### Coffeescript
+Include `jquery-picture-tag-x.y.z.js` in your HTML file, where x.y.z is the current version.
 
-```bash
-brew upgrade
-brew install nodejs
-npm install -g coffee-script
+```html
+<script src="jquery-picture-tag-x.y.z.js"></script>
 ```
 
 
 ## Usage
 
-Include the `jquery-picture-tag.js` in your HTML file.
+Use the [W3C Picture Element Proposal](http://www.w3.org/community/respimg/)'s `<picture>` tag syntax.
 
 ```html
-<script src="jquery-picture-tag.js"></script>
+<picture alt="Kitty cat!">
+  <source media="(min-width: 1600px)" srcset="cat-large.jpg 1x, cat-large@2x.jpg 2x" />
+  <source media="(min-width: 1000px)" srcset="cat-medium.jpg 1x, cat-medium@2x.jpg 2x" />
+  <source media="(min-width: 768px)"  srcset="cat-small.jpg 1x, cat-small@2x.jpg 2x" />
+  <source media="(min-width: 480px)"  srcset="cat-tiny.jpg 1x, cat-tiny@2x.jpg 2x" />
+  <source srcset="cat-tiny.jpg 1x, cat-tiny@2x.jpg 2x" />
+  <img alt="Kitty cat!" src="cat-tiny.jpg" />
+</picture>
 ```
 
 Put this Javascript somewhere to apply it to all `<picture>` tags.
@@ -57,17 +60,6 @@ Or this to apply it to just some `<picture>` tags.
 $(function() {
   $('.gallery picture').pictureTag();
 });
-```
-
-Use the proposed HTML `<picture>` tag syntax.
-
-```html
-<picture>
-  <source media="(min-width: 980px)" srcset="images/large.jpg 1x">
-  <source media="(min-width: 768px)" srcset="images/medium.jpg 1x">
-  <source srcset="images/small.jpg 1x"> 
-  <img src="images/small.jpg" alt=""> 
-</picture>
 ```
 
 
@@ -128,6 +120,14 @@ See [development/example.html](https://github.com/G5/jquery-picture-tag/blob/mas
 
 If you find bugs, have feature requests or questions, please
 [file an issue](https://github.com/G5/jquery-picture-tag/issues).
+
+### CoffeeScript
+
+```bash
+brew upgrade
+brew install nodejs
+npm install --global coffee-script
+```
 
 ### Specs
 
