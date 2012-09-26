@@ -1,5 +1,5 @@
 /*
-  jQuery Picture Tag 0.0.0
+  jQuery Picture Tag 0.0.1
   Built by Bookis Smuin: https://github.com/bookis
   Built by Jessica Lynn Suttles: https://github.com/jlsuttles
   Details and source: https://github.com/g5/jquery-picture-tag
