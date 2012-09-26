@@ -1,14 +1,32 @@
 # jQuery Picture Tag
 
-## Examples
+jQuery Plugin that implements the W3C HTML Responsive Images Extension Proposal (the `<picture>` tag)
 
-```bash
-open development/example.html
-```
+[w3.org/community/respimg](http://www.w3.org/community/respimg)
 
-## Contribute
 
-### You Need Coffee Script
+## Current Version
+
+0.0.1
+
+
+## Requirements
+
+### Development
+
+- [Node.js](http://nodejs.org)
+- [CoffeeScript](http://coffeescript.org)
+- [/dependencies](https://github.com/G5/jquery-picture-tag/tree/master/dependencies)
+
+### Production
+
+* [jQuery](http://jquery.com)
+* [matchmedia.js](https://github.com/paulirish/matchMedia.js)
+
+
+## Installation
+
+### Coffeescript
 
 ```bash
 brew upgrade
@@ -16,18 +34,109 @@ brew install nodejs
 npm install -g coffee-script
 ```
 
-### Running Specs
 
-TODO: cake spec
+## Usage
+
+Include the `jquery-picture-tag.js` in your HTML file.
+
+```html
+<script src="jquery-picture-tag.js"></script>
+```
+
+Put this Javascript somewhere to apply it to all `<picture>` tags.
+
+```javascript
+$(function() {
+  $('picture').pictureTag();
+});
+```
+
+Or this to apply it to just some `<picture>` tags.
+
+```javascript
+$(function() {
+  $('.gallery picture').pictureTag();
+});
+```
+
+Use the proposed HTML `<picture>` tag syntax.
+
+```html
+<picture>
+  <source media="(min-width: 980px)" srcset="images/large.jpg 1x">
+  <source media="(min-width: 768px)" srcset="images/medium.jpg 1x">
+  <source srcset="images/small.jpg 1x"> 
+  <img src="images/small.jpg" alt=""> 
+</picture>
+```
+
+
+## Examples
+
+See [development/example.html](https://github.com/G5/jquery-picture-tag/blob/master/development/example.html).
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>jQuery Picture Tag Example</title>
+  <script src="jquery-1.7.2.min.js"></script>
+  <script src="matchMedia.js"></script>
+  <script src="jquery-picture-tag.js"></script>
+
+  <script type="text/javascript" charset="utf-8">
+    $(function() {
+      $('picture').pictureTag();
+    });
+  </script>
+</head>
+
+<body>
+  <picture>
+    <source media="(min-width: 980px)" srcset="images/large-1.jpg 1x">
+    <source media="(min-width: 768px)" srcset="images/med-1.jpg 1x">
+    <source srcset="images/small-1.jpg 1x"> 
+    <img src="images/small-1.jpg" alt=""> 
+  </picture>  
+</body>
+</html>
+```
+
+
+## TODO
+
+- Write `cake spec`
+- Write `cake release VERSION=x.y.z`
+
+
+## Authors
+
+* Jessica Lynn Suttles / [@jlsuttles](https:github.com/jlsuttles)
+* Bookis Smuin / [@bookis](https:github.com/bookis)
+
+
+## Contributions
+
+1. Fork it
+2. Get it running (see Installation above)
+3. Create your feature branch (`git checkout -b my-new-feature`)
+4. Write your code and **specs**
+5. Commit your changes (`git commit -am 'Add some feature'`)
+6. Push to the branch (`git push origin my-new-feature`)
+7. Create new Pull Request
+
+If you find bugs, have feature requests or questions, please
+[file an issue](https://github.com/G5/jquery-picture-tag/issues).
+
+### Specs
 
 ```bash
 cake build:development
 open development/spec-runner.html
 ```
 
-### Releasing
-
-TODO: cake release VERSION=x.y.z
+### Releases
 
 ```bash
 echo -n "x.y.z" > VERSION
@@ -35,3 +144,29 @@ cake build # Package for distribution
 cake build:tag # Tag the git repo with the version number
 git push --tags
 ```
+
+
+## License
+
+Copyright (c) 2012 G5
+
+MIT License
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
