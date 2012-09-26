@@ -67,14 +67,9 @@ $(function() {
 ```
 
 
-## Example
+## Examples
 
-[development/example.html](https://github.com/G5/jquery-picture-tag/blob/master/development/example.html)
-
-## TODO
-
-- Write `cake spec`
-- Write `cake release VERSION=x.y.z`
+* [http://G5.github.com/jquery-picture-tag/development/example.html](http://G5.github.com/jquery-picture-tag/development/example.html)
 
 
 ## Authors
