@@ -26,7 +26,7 @@ jQuery Plugin that implements the [W3C Picture Element Proposal](http://www.w3.o
 
 Include `jquery-picture-tag-x.y.z.js` in your HTML file, where x.y.z is the current version.
 
-If you're using Rails then [jquery_picture_tag-rails](https://github.com/G5/jquery-picture-tag) will include the javascript for you.
+If you're using Rails then [jquery_picture_tag-rails](https://github.com/G5/jquery_picture_tag-rails) will include the javascript for you.
 
 ```html
 <script src="jquery-picture-tag-x.y.z.js"></script>
