@@ -21,28 +21,24 @@ SPEC_FILES = [
   "picture_tag/media_spec.coffee",
 ]
 
-task "build", "Package for distribution", ->
+task "spec", "Watch for changes in src and update development package", ->
+  compileSrc(true)
+  compileSpec()
+
+task "release", "Package for distribution and tag the git repo with the version number", ->
   fs.readFile 'VERSION', 'utf8', (err, data) ->
     throw err if err
     version = data
     emptyLib()
     compileSrc(false, version)
-
-task "build:development", "Watch for changes in src and update development package", ->
-  compileSrc(true)
-  compileSpec()
-
-task "build:tag", "Tag the git repo with the version number", ->
-  fs.readFile 'VERSION', 'utf8', (err, data) ->
-    print data.toString()
-    throw err if err
-    execute "git", ["tag", data]
+    execute "git", ["tag", "v#{data}"]
+    execute "git", ["push", "--tags"]
 
 emptyLib = ->
   execute "rm", ["-r", "lib"]
 
 compileSrc = (development, version = null) ->
-  outputFilename = "jquery.picture-tag"
+  outputFilename = "jquery-picture-tag"
   outputFilename += if version then "-#{version}.js" else ".js"
   behavior = if development then "--watch" else "--compile"
   outputPath = if development then "development/lib" else "lib"
@@ -62,10 +58,10 @@ markVersion = (file, version) ->
   comment = """
     /*
       jQuery Picture Tag #{version}
-      Built by Bookis Smuin: https://github.com/bookis
       Built by Jessica Lynn Suttles: https://github.com/jlsuttles
+      Built by Bookis Smuin: https://github.com/bookis
       Details and source: https://github.com/g5/jquery-picture-tag
-      Demo: https://g5.github.com/jquery-picture-tag
+      Demo: https://g5.github.com/jquery-picture-tag/development/example.html
     */
 
     """
@@ -73,7 +69,7 @@ markVersion = (file, version) ->
   exec "echo \"#{comment}\" | cat - #{file} > #{tmpFile} && mv #{tmpFile} #{file}"
 
 compileSpec = () ->
-  outputFilename = "jquery.picture-tag-spec.js"
+  outputFilename = "jquery-picture-tag-spec.js"
   outputPath = "development/spec"
   options = [
     "--join",

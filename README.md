@@ -102,7 +102,7 @@ npm install --global coffee-script
 ### Specs
 
 ```bash
-cake build:development
+cake spec
 open development/spec-runner.html
 ```
 
@@ -110,9 +110,7 @@ open development/spec-runner.html
 
 ```bash
 echo -n "x.y.z" > VERSION
-cake build # Package for distribution
-cake build:tag # Tag the git repo with the version number
-git push --tags
+cake release
 ```
 
 
