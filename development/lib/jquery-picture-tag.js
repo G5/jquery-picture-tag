@@ -17,21 +17,18 @@
 
     function Picture($el) {
       this.$el = $el;
-      this._img = __bind(this._img, this);
-
       this._displayBest = __bind(this._displayBest, this);
 
+      this.$fallbackImg = this.$el.children("img:first");
+      this.$fallbackImg.hide();
+      this.pictureImg = new PictureTag.Img(this);
       this.sources = new PictureTag.Sources(this.$el.children("source"));
       this._displayBest();
       $(window).resize(this._displayBest);
     }
 
     Picture.prototype._displayBest = function() {
-      return this._img().display(this.sources.best());
-    };
-
-    Picture.prototype._img = function() {
-      return new PictureTag.Img(this.$el.children("img:first"));
+      return this.pictureImg.display(this.sources.best());
     };
 
     return Picture;
@@ -40,18 +37,30 @@
 
   this.PictureTag.Img = (function() {
 
-    function Img($el) {
-      this.$el = $el;
+    function Img(picture) {
+      this.picture = picture;
       this._replace = __bind(this._replace, this);
 
+      this._current = __bind(this._current, this);
+
+      this.display = __bind(this.display, this);
+
+      this.alt = this.picture.$el.attr("alt");
+      this.$el = $('<img alt="' + this.alt + '" src="">');
+      this.picture.$el.children("img:last").after(this.$el);
     }
 
     Img.prototype.display = function(value) {
+      this.$el = this._current();
       if (value !== this.$el.attr("src")) {
         this.$el2 = this.$el.clone();
         this.$el2.attr("src", value);
         return this.$el2.load(this._replace);
       }
+    };
+
+    Img.prototype._current = function() {
+      return this.picture.$el.children("img:last");
     };
 
     Img.prototype._replace = function() {

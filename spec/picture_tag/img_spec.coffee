@@ -15,7 +15,7 @@ describe "PictureTag.Img", ->
 
   describe "method", ->
 
-    describe "display", ->
+    xdescribe "display", ->
       beforeEach ->
         spyOn(@img.$el, 'attr')
         @img.display()

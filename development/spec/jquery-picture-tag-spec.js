@@ -41,23 +41,18 @@
           return expect(this.picture._displayBest).toEqual(1);
         });
       });
-      describe("_displayBest", function() {
+      return describe("_displayBest", function() {
         beforeEach(function() {
           spyOn(this.picture, '_displayBest').andCallThrough();
-          spyOn(this.picture, '_img').andCallThrough();
+          spyOn(this.picture.pictureImg, 'display');
           spyOn(this.picture.sources, 'best');
           return this.picture._displayBest();
         });
-        it("calls _img once", function() {
-          return expect(this.picture._img.calls.length).toEqual(1);
-        });
-        return it("calls best on sources once", function() {
+        it("calls best on sources once", function() {
           return expect(this.picture.sources.best.calls.length).toEqual(1);
         });
-      });
-      return describe("_img", function() {
-        return it("returns a PictureTag.Img", function() {
-          return expect(this.picture._img()).toEqual(jasmine.any(PictureTag.Img));
+        return it("calls display on pictureImg once", function() {
+          return expect(this.picture.pictureImg.display.calls.length).toEqual(1);
         });
       });
     });
@@ -65,15 +60,15 @@
       return describe("window resize", function() {
         beforeEach(function() {
           spyOn(this.picture, '_displayBest').andCallThrough();
-          spyOn(this.picture, '_img').andCallThrough();
+          spyOn(this.picture.pictureImg, 'display');
           spyOn(this.picture.sources, 'best');
           return $(window).resize();
         });
         it("calls best on sources once", function() {
           return expect(this.picture.sources.best.calls.length).toEqual(1);
         });
-        return it("calls display on img once", function() {
-          return expect(this.picture._img.calls.length).toEqual(1);
+        return it("calls display on pictureImg once", function() {
+          return expect(this.picture.pictureImg.display.calls.length).toEqual(1);
         });
       });
     });
@@ -95,7 +90,7 @@
       return this.img = new PictureTag.Img($el.children("img:first"));
     });
     return describe("method", function() {
-      return describe("display", function() {
+      return xdescribe("display", function() {
         beforeEach(function() {
           spyOn(this.img.$el, 'attr');
           return this.img.display();

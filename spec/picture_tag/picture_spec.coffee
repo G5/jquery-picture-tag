@@ -31,30 +31,26 @@ describe "PictureTag.Picture", ->
     describe "_displayBest", ->
       beforeEach ->
         spyOn(@picture, '_displayBest').andCallThrough()
-        spyOn(@picture, '_img').andCallThrough()
+        spyOn(@picture.pictureImg, 'display')
         spyOn(@picture.sources, 'best')
         @picture._displayBest()
-
-      it "calls _img once", ->
-        expect(@picture._img.calls.length).toEqual(1)
 
       it "calls best on sources once", ->
         expect(@picture.sources.best.calls.length).toEqual(1)
 
-    describe "_img", ->
-      it "returns a PictureTag.Img", ->
-        expect(@picture._img()).toEqual(jasmine.any(PictureTag.Img))
+      it "calls display on pictureImg once", ->
+        expect(@picture.pictureImg.display.calls.length).toEqual(1)
 
   describe "event", ->
     describe "window resize", ->
       beforeEach ->
         spyOn(@picture, '_displayBest').andCallThrough()
-        spyOn(@picture, '_img').andCallThrough()
+        spyOn(@picture.pictureImg, 'display')
         spyOn(@picture.sources, 'best')
         $(window).resize()
 
       it "calls best on sources once", ->
         expect(@picture.sources.best.calls.length).toEqual(1)
 
-      it "calls display on img once", ->
-        expect(@picture._img.calls.length).toEqual(1)
+      it "calls display on pictureImg once", ->
+        expect(@picture.pictureImg.display.calls.length).toEqual(1)
