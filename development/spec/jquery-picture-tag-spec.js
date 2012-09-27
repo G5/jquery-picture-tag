@@ -13,11 +13,13 @@
   describe("PictureTag.Picture", function() {
     var $el;
     $el = $('\
-    <picture>\
-      <source media="(min-width: 980px)" srcset="images/large-1.jpg 1x">\
-      <source media="(min-width: 768px)" srcset="images/med-1.jpg 1x">\
-      <source srcset="images/small-1.jpg 1x">\
-      <img src="images/small-1.jpg" alt="">\
+    <picture alt="Kitty cat!">\
+      <source media="(min-width: 1600px)" srcset="cat-huge.jpg 1x,   cat-huge@2x.jpg 2x">\
+      <source media="(min-width: 1000px)" srcset="cat-large.jpg 1x,  cat-large@2x.jpg 2x">\
+      <source media="(min-width: 768px)"  srcset="cat-medium.jpg 1x, cat-medium@2x.jpg 2x">\
+      <source media="(min-width: 480px)"  srcset="cat-small.jpg 1x,  cat-small@2x.jpg 2x">\
+      <source                             srcset="cat-tiny.jpg 1x,   cat-tiny@2x.jpg 2x">\
+      <img alt="Kitty cat!"               src="cat-tiny.jpg">\
     </picture>\
   ');
     beforeEach(function() {
@@ -80,11 +82,13 @@
   describe("PictureTag.Img", function() {
     var $el;
     $el = $('\
-    <picture>\
-      <img media="(min-width: 980px)" srcset="images/large-1.jpg 1x">\
-      <img media="(min-width: 768px)" srcset="images/med-1.jpg 1x">\
-      <img srcset="images/small-1.jpg 1x">\
-      <img src="images/small-1.jpg" alt="">\
+    <picture alt="Kitty cat!">\
+      <source media="(min-width: 1600px)" srcset="cat-huge.jpg 1x,   cat-huge@2x.jpg 2x">\
+      <source media="(min-width: 1000px)" srcset="cat-large.jpg 1x,  cat-large@2x.jpg 2x">\
+      <source media="(min-width: 768px)"  srcset="cat-medium.jpg 1x, cat-medium@2x.jpg 2x">\
+      <source media="(min-width: 480px)"  srcset="cat-small.jpg 1x,  cat-small@2x.jpg 2x">\
+      <source                             srcset="cat-tiny.jpg 1x,   cat-tiny@2x.jpg 2x">\
+      <img alt="Kitty cat!"               src="cat-tiny.jpg">\
     </picture>\
   ');
     beforeEach(function() {
@@ -106,11 +110,13 @@
   describe("PictureTag.Sources", function() {
     var $el;
     $el = $('\
-    <picture>\
-      <source media="(min-width: 980px)" srcset="images/large-1.jpg 1x">\
-      <source media="(min-width: 768px)" srcset="images/med-1.jpg 1x">\
-      <source srcset="images/small-1.jpg 1x">\
-      <img src="images/small-1.jpg" alt="">\
+    <picture alt="Kitty cat!">\
+      <source media="(min-width: 1600px)" srcset="cat-huge.jpg 1x,   cat-huge@2x.jpg 2x">\
+      <source media="(min-width: 1000px)" srcset="cat-large.jpg 1x,  cat-large@2x.jpg 2x">\
+      <source media="(min-width: 768px)"  srcset="cat-medium.jpg 1x, cat-medium@2x.jpg 2x">\
+      <source media="(min-width: 480px)"  srcset="cat-small.jpg 1x,  cat-small@2x.jpg 2x">\
+      <source                             srcset="cat-tiny.jpg 1x,   cat-tiny@2x.jpg 2x">\
+      <img alt="Kitty cat!"               src="cat-tiny.jpg">\
     </picture>\
   ');
     beforeEach(function() {
@@ -145,11 +151,13 @@
   describe("PictureTag.Source", function() {
     var $el;
     $el = $('\
-    <picture>\
-      <source media="(min-width: 980px)" srcset="images/large-1.jpg 1x">\
-      <source media="(min-width: 768px)" srcset="images/med-1.jpg 1x">\
-      <source srcset="images/small-1.jpg 1x">\
-      <img src="images/small-1.jpg" alt="">\
+    <picture alt="Kitty cat!">\
+      <source media="(min-width: 1600px)" srcset="cat-huge.jpg 1x,   cat-huge@2x.jpg 2x">\
+      <source media="(min-width: 1000px)" srcset="cat-large.jpg 1x,  cat-large@2x.jpg 2x">\
+      <source media="(min-width: 768px)"  srcset="cat-medium.jpg 1x, cat-medium@2x.jpg 2x">\
+      <source media="(min-width: 480px)"  srcset="cat-small.jpg 1x,  cat-small@2x.jpg 2x">\
+      <source                             srcset="cat-tiny.jpg 1x,   cat-tiny@2x.jpg 2x">\
+      <img alt="Kitty cat!"               src="cat-tiny.jpg">\
     </picture>\
   ');
     beforeEach(function() {
@@ -188,11 +196,13 @@
   describe("PictureTag.Media", function() {
     var $el;
     $el = $('\
-    <picture>\
-      <media media="(min-width: 980px)" srcset="images/large-1.jpg 1x">\
-      <media media="(min-width: 768px)" srcset="images/med-1.jpg 1x">\
-      <media srcset="images/small-1.jpg 1x">\
-      <media src="images/small-1.jpg" alt="">\
+    <picture alt="Kitty cat!">\
+      <source media="(min-width: 1600px)" srcset="cat-huge.jpg 1x,   cat-huge@2x.jpg 2x">\
+      <source media="(min-width: 1000px)" srcset="cat-large.jpg 1x,  cat-large@2x.jpg 2x">\
+      <source media="(min-width: 768px)"  srcset="cat-medium.jpg 1x, cat-medium@2x.jpg 2x">\
+      <source media="(min-width: 480px)"  srcset="cat-small.jpg 1x,  cat-small@2x.jpg 2x">\
+      <source                             srcset="cat-tiny.jpg 1x,   cat-tiny@2x.jpg 2x">\
+      <img alt="Kitty cat!"               src="cat-tiny.jpg">\
     </picture>\
   ');
     beforeEach(function() {
