@@ -45,7 +45,7 @@ If you're using Rails then [picture_tag-rails](https://github.com/G5/picture_tag
   <source media="(min-width: 1000px)" srcset="cat-large.jpg 1x,  cat-large@2x.jpg 2x">
   <source media="(min-width: 768px)"  srcset="cat-medium.jpg 1x, cat-medium@2x.jpg 2x">
   <source media="(min-width: 480px)"  srcset="cat-small.jpg 1x,  cat-small@2x.jpg 2x">
-  <source                             srcset="cat-tiny.jpg 1x, cat-tiny@2x.jpg 2x">
+  <source                             srcset="cat-tiny.jpg 1x,   cat-tiny@2x.jpg 2x">
   <img alt="Kitty cat!"               src="cat-tiny.jpg">
 </picture>
 ```
@@ -102,7 +102,7 @@ npm install --global coffee-script
 ### Specs
 
 ```bash
-cake build:development
+cake spec
 open development/spec-runner.html
 ```
 
@@ -110,9 +110,7 @@ open development/spec-runner.html
 
 ```bash
 echo -n "x.y.z" > VERSION
-cake build # Package for distribution
-cake build:tag # Tag the git repo with the version number
-git push --tags
+cake release
 ```
 
 

@@ -5,18 +5,20 @@
   <title>jQuery Picture Tag Example</title>
   <script src="../dependencies/jquery-1.7.2.min.js"></script>
   <script src="../dependencies/matchMedia.js"></script>
-  <script src="lib/jquery.picture-tag.js"></script>
+  <script src="lib/jquery-picture-tag.js"></script>
 
   <script>
     $(function() {
       $('picture').pictureTag();
     });
   </script>
+  <style>
+    img { width: 100% }
+  </style>
 </head>
 
 <body>
   <picture alt="Kitty cat!">
-    <source media="(min-width: 1600px)" srcset="images/cat-huge.jpg 1x,   images/cat-huge@2x.jpg 2x">
     <source media="(min-width: 1000px)" srcset="images/cat-large.jpg 1x,  images/cat-large@2x.jpg 2x">
     <source media="(min-width: 768px)"  srcset="images/cat-medium.jpg 1x, images/cat-medium@2x.jpg 2x">
     <source media="(min-width: 480px)"  srcset="images/cat-small.jpg 1x,  images/cat-small@2x.jpg 2x">

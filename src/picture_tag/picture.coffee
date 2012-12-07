@@ -1,12 +1,14 @@
 class @PictureTag.Picture
   constructor: (@$el) ->
+    @$fallbackImg = @$el.children "img:first"
+    @$fallbackImg.hide()
+
+    @pictureImg = new PictureTag.Img this
+
     @sources = new PictureTag.Sources(@$el.children "source")
 
     @_displayBest()
     $(window).resize @_displayBest
 
   _displayBest: =>
-    @_img().display @sources.best()
-
-  _img: =>
-    new PictureTag.Img(@$el.children("img:first"))
+    @pictureImg.display @sources.best()
