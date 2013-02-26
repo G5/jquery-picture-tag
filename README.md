@@ -1,5 +1,7 @@
 # jQuery Picture Tag
 
+[![Build Status](https://travis-ci.org/G5/jquery-picture-tag.png)](https://travis-ci.org/G5/jquery-picture-tag)
+
 jQuery Plugin that implements the [W3C Picture Element Proposal](http://www.w3.org/community/respimg/) (the `<picture>` tag)
 
 
