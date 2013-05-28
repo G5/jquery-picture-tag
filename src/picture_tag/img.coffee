@@ -8,11 +8,12 @@ class @PictureTag.Img
     @$el = @_current()
     unless value == @$el.attr("src")
       @$el2 = @$el.clone()
+      @$el2.attr "src", null
       @$el2.attr "src", value
       @$el2.load @_replace
 
   _current: =>
     @picture.$el.children("img:last")
-  
+
   _replace: =>
     @$el.replaceWith @$el2
